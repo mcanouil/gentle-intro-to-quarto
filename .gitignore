@@ -1,8 +1,8 @@
 _freeze
 .quarto
+.luarc.json
 *_cache
 *_files
 **.html
-.luarc.json
-
 /.quarto/
+/.luarc.json
