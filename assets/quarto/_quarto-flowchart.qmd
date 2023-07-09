@@ -1,0 +1,80 @@
+::: {.content-visible when-profile="rlille"}
+
+```{mermaid}
+%%| fig-width: 10
+%%{
+  init: {
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#F2F2F2",
+      "primaryTextColor": "#D40000",
+      "primaryBorderColor": "#D40000",
+      "lineColor": "#D40000",
+      "secondaryColor": "#F2F2F2",
+      "tertiaryBorderColor": "#D40000",
+      "tertiaryColor": "#DDDDDD",
+      "tertiaryTextColor": "#D40000"
+    },
+    "themeCSS": ".label foreignObject, .cluster-label foreignObject { font-size: 90%; overflow: visible; }"
+  }
+}%%
+flowchart LR
+  A1[qmd] --> C{"knitr<br>(R)"}
+  A1[qmd] --> B{"Jupyter<br>(Python)"}
+  A2[ipynb] --> B{"Jupyter<br>(Python)"}
+  B --> D[md]
+  C --> D[md]
+  D --> E{Pandoc}
+  E --> F[pdf]
+  E --> G[docx]
+  E --> H[html]
+  E --> I[...]
+
+  subgraph engine [Engine]
+  B
+  C
+  end
+
+```
+
+:::
+
+::: {.content-visible when-profile="coeos"}
+
+```{mermaid}
+%%| fig-width: 10
+%%{
+  init: {
+    "theme": "base",
+    "themeVariables": {
+      "primaryColor": "#333333",
+      "primaryTextColor": "#FAFAFA",
+      "primaryBorderColor": "#FAFAFA",
+      "lineColor": "#FAFAFA",
+      "secondaryColor": "#333333",
+      "tertiaryBorderColor": "#FAFAFA",
+      "tertiaryColor": "#666666",
+      "tertiaryTextColor": "#FAFAFA"
+    },
+    "themeCSS": ".label foreignObject, .cluster-label foreignObject { font-size: 90%; overflow: visible; }"
+  }
+}%%
+flowchart LR
+  A1[qmd] --> C{"knitr<br>(R)"}
+  A1[qmd] --> B{"Jupyter<br>(Python)"}
+  A2[ipynb] --> B{"Jupyter<br>(Python)"}
+  B --> D[md]
+  C --> D[md]
+  D --> E{Pandoc}
+  E --> F[pdf]
+  E --> G[docx]
+  E --> H[html]
+  E --> I[...]
+
+  subgraph engine [Engine]
+  B
+  C
+  end
+```
+
+:::

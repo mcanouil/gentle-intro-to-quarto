@@ -1,0 +1,46 @@
+# <img src = "_extensions/RLille/rlille/rlille.svg" width = "35%" /> {.center-x}
+
+## Join R Lille!
+
+:::: {layout="[[1], [1, 1, 1], [1], [1, 1], [1]]" layout-valign="center" .center-x}
+__We are always looking for speakers:__
+
+_Conference_  
+(~ 1 hour)
+
+_Lightning talk_  
+(~ 20 minutes)
+
+_Workshop_
+::::
+
+:::: {layout="[1]" layout-valign="center" .center-x}
+__If you want to participate, it's quite simple:__
+
+_Pick a subject and tell us when you want to talk about._
+
+_In French or in English[^1]._
+
+__Or if you are interested in something specific, tell us and we will try to find a speaker.__
+::::
+
+[^1]: R Lille remains a French local R User Group, so French is encouraged.
+
+## How to Reach R Lille?
+
+:::: {.center-x style="padding-top: 5%;"}
+[{{< iconify fa6-brands twitter >}} @RLille_RUG](https://twitter.com/RLille_RUG){style="text-decoration: none;"} (or [{{< iconify fa6-brands twitter >}} @MickaelCanouil](https://twitter.com/MickaelCanouil){style="text-decoration: none;"})
+
+[{{< iconify fa6-solid envelope >}} contact@rlille.fr](mailto:contact@rlille.fr){style="text-decoration: none;"}
+(_or [{{< iconify fa6-solid envelope >}} mickael.canouil@rlille.fr](mailto:mickael.canouil@rlille.fr){style="text-decoration: none;"}_)
+
+[{{< iconify fa6-brands slack >}} slack.rlille.fr](https://r-grrr.slack.com/archives/C042K6XB34G){style="text-decoration: none;"}
+
+[{{< iconify fa6-brands meetup >}} meetup.rlille.fr](http://meetup.rlille.fr/){style="text-decoration: none;"}
+
+[{{< iconify fa6-brands github >}} github.com/RLille](https://github.com/RLille){style="text-decoration: none;"}
+
+[{{< iconify fa6-solid house-chimney-user >}} rlille.fr](https://rlille.fr/){style="text-decoration: none;"} (_in French_)
+
+[{{< iconify fa6-brands youtube >}} youtube.rlille.fr](http://youtube.rlille.fr/){style="text-decoration: none;"}
+::::

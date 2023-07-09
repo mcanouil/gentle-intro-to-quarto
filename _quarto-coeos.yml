@@ -1,0 +1,11 @@
+author:
+  - name: Mickaël CANOUIL, *Ph.D.*
+    email: pro@mickael.canouil.dev
+    url: https://mickael.canouil.fr/
+
+date: today
+
+format:
+  coeos-revealjs:
+    theme: [_extensions/mcanouil/coeos/coeos.scss, assets/scss/custom-coeos.scss]
+    logo: https://raw.githubusercontent.com/mcanouil/hex-stickers/main/SVG/mc.svg

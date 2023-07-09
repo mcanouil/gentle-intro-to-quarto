@@ -1,0 +1,18 @@
+project:
+  execute-dir: project
+
+profile:
+  default: coeos
+  group: 
+    - [coeos, rlille]
+
+date-format: "dddd, [the] D[<sup style='font-size:65%;font-style:italic;'>th</sup>] [of] MMMM, YYYY"
+
+embed-resources: false
+
+execute:
+  freeze: auto
+  cache: true
+
+revealjs-plugins:
+  - attribution

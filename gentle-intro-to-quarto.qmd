@@ -1,0 +1,240 @@
+---
+title: '[Quarto]{style="font-size:200%;"}<br>A [_Not So_]{style="font-size:50%;"} Gentle Introduction'
+pagetitle: "Quarto: A Gentle Introduction"
+code-line-numbers: false
+---
+
+::: {.content-visible when-profile="rlille"}
+{{< include assets/quarto/_rlille-ad.qmd >}}
+:::
+
+# Quarto
+
+## What is Quarto? {{< iconify thinking-face >}}
+
+```{r}
+dir.create("assets/images", recursive = TRUE, showWarnings = FALSE)
+webshot2::webshot(
+  url = "https://quarto.org/",
+  file = "assets/images/quarto-org.png",
+  vwidth = 1920 * 0.60,
+  vheight = 1080 * 0.60,
+  cliprect = "viewport"
+)
+```
+
+::: {.attribution}
+<https://quarto.org/>
+:::
+
+## What is Quarto? {{< iconify thinking-face >}}
+
+Quarto ([quarto.org](https://quarto.org/)):
+
+- is a **free and open-source software**, released under the GPL by [Posit, PBC](https://posit.co/).
+- is a **command line interface** (CLI).
+- mainly supports **Python**, **R**, **Julia**, and **Observable JavaScript**.
+- supports writing document as **Markdown** or **Jupyter Notebook**.
+- can build **HTML**, **PDF**, **Microsoft Word**, *etc.*
+- can build **websites**, **blogs**, **books**, *etc.*.
+- is built on **Pandoc**.
+
+## What is Pandoc? {{< iconify thinking-face >}}
+
+::: {layout="[0.30, 0.70]" layout-valign="center"}
+```{r}
+webshot2::webshot(
+  url = "https://pandoc.org/",
+  file = "assets/images/pandoc-org.png",
+  vwidth = 1920 * 0.60,
+  vheight = 1080 * 1.80,
+  cliprect = "viewport"
+)
+```
+
+:::: {#pandoc-description}
+Pandoc ([pandoc.org](https://pandoc.org/)):
+
+- is a **free software**, released under the GPL by [John MacFarlane](http://johnmacfarlane.net/).
+- is a **command line interface** (CLI).
+- allows to **convert to and between multiple formats**.
+- **understands Markdown** syntax.
+- **understands LaTeX math** and macros.
+- handles **citations and bibliographies**.
+::::
+:::
+
+## How does Quarto work?
+
+{{< include assets/quarto/_quarto-flowchart.qmd >}}
+
+# Getting started
+
+## Downloading and installing Quarto
+
+```{r}
+#| output: asis
+page <- "https://quarto.org/docs/download/"
+file <- "assets/images/quarto-download.png"
+res <- webshot2::webshot(
+  url = page,
+  file = file,
+  vwidth = 1920 * 0.70,
+  vheight = 1080 * 0.70,
+  cliprect = "viewport"
+)
+cat(sprintf("\n\n[![](%s){width=100%% fig-align=center fig-alt='Screenshot of %s webpage'}](%s)", file, page, page))
+```
+
+::: {.attribution}
+<https://quarto.org/>
+:::
+
+## Downloading and installing Quarto
+
+Additionally, you can download and install Quarto using:
+
+::: {.columns}
+
+:::: {.column}
+
+- [Homebrew](https://brew.sh/) (macOS/linux)
+
+```{.bash filename="Bash"}
+brew install quarto
+```
+
+```{r}
+#| output: asis
+page <- "https://brew.sh/"
+file <- "assets/images/quarto-homebrew.png"
+res <- webshot2::webshot(
+  url = page,
+  file = file,
+  vwidth = 1920 * 0.70,
+  vheight = 1080 * 0.70,
+  cliprect = "viewport"
+)
+
+cat('\n\n::: {style="text-align:center;"}\n\n')
+cat(sprintf("\n\n[![<a href = '%s'>%s</a>](%s){fig-alt='Screenshot of %s webpage'}](%s)", page, page, file, page, "https://formulae.brew.sh/cask/quarto"))
+cat("\n\n:::\n\n")
+```
+
+::::
+
+:::: {.column}
+
+- [Chocolatey](https://chocolatey.org/) (Windows)
+
+```{.PowerShell filename="PowerShell"}
+choco install quarto
+```
+
+```{r}
+#| output: asis
+page <- "https://community.chocolatey.org/"
+file <- "assets/images/quarto-chocolatey.png"
+res <- webshot2::webshot(
+  url = page,
+  file = file,
+  vwidth = 1920 * 0.70,
+  vheight = 1080 * 0.70,
+  cliprect = "viewport"
+)
+
+cat('\n\n::: {style="text-align:center;"}\n\n')
+cat(sprintf("\n\n[![<a href = '%s'>%s</a>](%s){fig-align=center fig-alt='Screenshot of %s webpage'}](%s)", page, page, file, page, "https://community.chocolatey.org/packages/quarto"))
+cat("\n\n:::\n\n")
+```
+
+::::
+:::
+
+## Writing with your favourite editor
+
+```{r}
+#| classes: panel-tabset
+#| output: asis
+pages <- sprintf(
+  "https://quarto.org/docs/get-started/hello/%s",
+  c(
+    "vscode.html",
+    "rstudio.html",
+    "neovim.html",
+    "text-editor.html"
+  )
+)
+for (ipage in pages) {
+  file <- paste0(
+    "assets/images/quarto-get-started-",
+    sub("\\.html$", ".png", basename(ipage))
+  )
+  webshot2::webshot(
+    url = ipage,
+    file = file,
+    vwidth = 1920 * 1.2,
+    vheight = 1080 * 1,
+    cliprect = "viewport"
+  )
+  cat("\n\n##", toupper(sub("\\.html$", "", basename(ipage))))
+  cat(sprintf("\n\n[![](%s){fig-alt='Screenshot of %s webpage'}](%s)", file, ipage, ipage))
+}
+```
+
+::: {.attribution}
+<https://quarto.org/>
+:::
+
+## Writing using the Visual Editor
+
+```{r}
+#| classes: panel-tabset
+#| output: asis
+pages <- c(
+  "vscode" = "https://quarto.org/docs/visual-editor/vscode/",
+  "rstudio" = "https://quarto.org/docs/visual-editor/"
+)
+for (ipage in names(pages)) {
+  file <- sprintf(
+    "assets/images/quarto-visual-editor-%s.png",
+    ipage
+  )
+  webshot2::webshot(
+    url = pages[[ipage]],
+    file = file,
+    vwidth = 1920 * 1.2,
+    vheight = 1080 * 1,
+    cliprect = "viewport"
+  )
+  cat("\n\n##", toupper(ipage))
+  cat(sprintf("\n\n[![](%s){fig-alt='Screenshot of %s webpage'}](%s)", file, pages[[ipage]], pages[[ipage]]))
+}
+```
+
+::: {.attribution}
+<https://quarto.org/>
+:::
+
+## Quarto: a command line interface
+
+```{bash}
+#| echo: true
+#| attr-output: 'style="font-size: 28%;"'
+#| output-location: fragment
+quarto --help
+```
+
+## Checking Quarto is installed
+
+```bash
+quarto check
+```
+
+::: {layout="[1, 1]" layout-align="center"}
+![](assets/images/quarto-check.png)
+
+{{< video assets/videos/quarto-check.mov >}}
+:::
+
+{{< include assets/quarto/_about.qmd >}}
