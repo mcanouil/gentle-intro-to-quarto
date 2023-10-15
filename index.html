@@ -613,7 +613,7 @@ timeline
 <section id="checking-quarto-is-installed" class="slide level2">
 <h2>Checking Quarto is installed</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-layout-panel" data-layout="[1, 1]" data-layout-align="center">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout="[1, 1]">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="assets/images/quarto-check.png"></p>
@@ -912,8 +912,8 @@ timeline
 <div>
 <pre class="mermaid mermaid-js">%%{init: { 'theme': 'dark' } }%%
 flowchart LR
-  qmd --&gt; J([Python/Jupyter])
-  qmd --&gt; K([R/knitr])
+  qmd --&gt; J([Jupyter])
+  qmd --&gt; K([knitr])
   J --&gt; md
   K --&gt; md
   md --&gt; P([pandoc])
@@ -983,6 +983,7 @@ flowchart LR
 <ul>
 <li>Source</li>
 </ul>
+<div style="font-size: 0.8em;">
 <div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
@@ -994,6 +995,7 @@ flowchart LR
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Take <span class="in">`penguins`</span>, and then,</span>
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>add new columns for the bill ratio and bill area.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="fragment">
 <ul>
 <li>Output</li>
@@ -1139,7 +1141,7 @@ Cross-reference example&nbsp;1: The above is a custom cross-reference content.
 </figcaption>
 </figure>
 </div>
-<p><span class="fragment">Even the whole content above can be referenced: <a href="#/cross-references-anything" class="quarto-xref">Cross-reference example&nbsp;1</a>.</span></p>
+<p><span class="fragment">It’s possible to reference the whole content above: <a href="#/cross-references-anything" class="quarto-xref">Cross-reference example&nbsp;1</a>.</span></p>
 </section>
 <section id="shortcodes" class="slide level2">
 <h2>Shortcodes</h2>
@@ -1427,7 +1429,7 @@ summary(fit)`,
 </section></section>
 <section id="quarto-resources" class="title-slide slide level1 center">
 <h1>Quarto resources</h1>
-<div class="quarto-layout-panel" style="text-align: center;" data-layout-align="center" data-layout-ncol="2">
+<div class="quarto-layout-panel" data-layout-align="center" data-layout-ncol="2" style="text-align: center;">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="assets/images/quarto-logo-trademark.svg" width="400"></p>
