@@ -570,8 +570,8 @@ flowchart LR
 ```{mermaid}
 %%{init: { 'theme': 'dark' } }%%
 flowchart LR
-  qmd --> J([Python/Jupyter])
-  qmd --> K([R/knitr])
+  qmd --> J([Jupyter])
+  qmd --> K([knitr])
   J --> md
   K --> md
   md --> P([pandoc])
@@ -619,6 +619,9 @@ flowchart LR
 ## Code annotations
 
 - Source
+  
+::: {style="font-size: 0.8em;"}
+
 ````markdown
 ```r
 library(tidyverse)
@@ -632,6 +635,8 @@ penguins |>                                            # <1>
 1. Take `penguins`, and then,
 2. add new columns for the bill ratio and bill area.
 ````
+
+:::
 
 ::: {.fragment}
 
@@ -766,7 +771,7 @@ The above is a custom cross-reference content.
 
 :::::
 
-[Even the whole content above can be referenced: @cr-example.]{.fragment}
+[It's possible to reference the whole content above: @cr-example.]{.fragment}
 
 ## Shortcodes
 
