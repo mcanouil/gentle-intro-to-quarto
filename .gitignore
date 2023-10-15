@@ -1,0 +1,9 @@
+_freeze
+.quarto
+.luarc.json
+*_cache
+*_files
+**.html
+/.quarto/
+/.luarc.json
+webr-*.js

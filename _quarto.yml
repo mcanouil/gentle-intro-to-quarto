@@ -1,0 +1,74 @@
+project:
+  type: default
+  execute-dir: project
+  pre-render: rm -rf demo && mkdir demo
+  post-render:
+    - poster.r
+
+author:
+  - name: Mickaël CANOUIL, *Ph.D.*
+    email: pro@mickael.canouil.dev
+    url: https://mickael.canouil.fr/
+
+date: 2023-10-19
+date-format: "dddd[, the] Do [of] MMMM, YYYY"
+
+embed-resources: false
+
+format:
+  coeos-revealjs:
+    theme: [_extensions/mcanouil/coeos/coeos.scss, assets/scss/custom-coeos.scss, assets/scss/no-title-slide-number.scss]
+    logo: https://raw.githubusercontent.com/mcanouil/hex-stickers/main/SVG/mc.svg
+
+code-annotations: hover
+code-line-numbers: false
+
+execute:
+  freeze: auto
+  cache: true
+
+filters:
+  - webr
+
+revealjs-plugins:
+  - attribution
+
+include-after-body:
+  - text: |
+      <script type="text/javascript">
+      Reveal.addEventListener('ready', (event) => {
+        if (event.indexh === 0) {
+          document.querySelector("div.slide-menu-button").style.display = "none";
+        } else {
+          document.querySelector("div.slide-menu-button").style.display = "block";
+        }
+      });
+      Reveal.addEventListener('slidechanged', (event) => {
+        if (event.indexh === 0) {
+          document.querySelector("div.slide-menu-button").style.display = "none";
+        } else {
+          document.querySelector("div.slide-menu-button").style.display = "block";
+        }
+      });
+      </script>
+      <script type="text/javascript">
+        const dateElements = document.querySelectorAll("p.date, div.listing-date");
+        dateElements.forEach((el) => {
+          el.innerHTML = el.innerHTML.replace(
+            /(\d+)(rd|st|th)/g,
+            "$1<sup style='font-size:0.5em;font-style:italic;'>$2</sup>"
+          );
+        });
+        </script>
+      <!--
+      <script type="text/javascript">
+      Reveal.addEventListener('ready', (event) => {
+        const isFirst = event.indexh === 0;
+        Reveal.configure({ slideNumber: !isFirst });
+      });
+      Reveal.addEventListener('slidechanged', (event) => {
+        const isFirst = event.indexh === 0;
+        Reveal.configure({ slideNumber: !isFirst });
+      });
+      </script>
+      -->

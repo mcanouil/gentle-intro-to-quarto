@@ -1,0 +1,8 @@
+library(cli)
+library(httpgd)
+library(languageserver)
+library(knitr)
+library(reticulate)
+library(prompt)
+library(webshot2)
+library(rmarkdown)
