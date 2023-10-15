@@ -13,6 +13,11 @@ crossref:
       prefix: Cross-reference example
       name: Cross-reference example
       ref-type: cr
+filters:
+  - webr
+resources:
+  - webr-serviceworker.js
+  - webr-worker.js
 ---
 
 ::: {.content-visible when-profile="rlille"}
@@ -619,8 +624,6 @@ flowchart LR
 ## Code annotations
 
 - Source
-  
-::: {style="font-size: 0.8em;"}
 
 ````markdown
 ```r
@@ -636,9 +639,7 @@ penguins |>                                            # <1>
 2. add new columns for the bill ratio and bill area.
 ````
 
-:::
-
-::: {.fragment}
+## Code annotations
 
 - Output
 
@@ -653,8 +654,6 @@ penguins |>                                            # <1>
 ```
 1. Take `penguins`, and then,
 2. add new columns for the bill ratio and bill area.
-
-:::
 
 ## Cross-references: "figures"
 
@@ -770,8 +769,6 @@ This is a caption for the text.
 The above is a custom cross-reference content.
 
 :::::
-
-[It's possible to reference the whole content above: @cr-example.]{.fragment}
 
 ## Shortcodes
 

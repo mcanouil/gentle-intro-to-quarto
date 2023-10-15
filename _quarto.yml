@@ -4,9 +4,6 @@ project:
   pre-render: rm -rf demo && mkdir demo
   post-render:
     - poster.r
-  resources:
-    - webr-serviceworker.js
-    - webr-worker.js
 
 author:
   - name: Mickaël CANOUIL, *Ph.D.*
@@ -29,9 +26,6 @@ code-line-numbers: false
 execute:
   freeze: auto
   cache: true
-
-filters:
-  - webr
 
 revealjs-plugins:
   - attribution

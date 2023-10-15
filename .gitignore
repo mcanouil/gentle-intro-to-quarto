@@ -6,4 +6,3 @@ _freeze
 **.html
 /.quarto/
 /.luarc.json
-webr-*.js
