@@ -613,7 +613,7 @@
 <section id="checking-quarto-is-installed" class="slide level2">
 <h2>Checking Quarto is installed</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[1, 1]">
+<div class="quarto-layout-panel" data-layout="[1, 1]" data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="assets/images/quarto-check.png"></p>
@@ -1476,6 +1476,8 @@ summary(fit)`,
   <script src="gentle-intro-to-quarto_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="gentle-intro-to-quarto_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="gentle-intro-to-quarto_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="gentle-intro-to-quarto_files/libs/revealjs/plugin/multiplex/socket.io.js"></script>
+  <script src="gentle-intro-to-quarto_files/libs/revealjs/plugin/multiplex/multiplex.js"></script>
   <script src="gentle-intro-to-quarto_files/libs/revealjs/plugin/reveal-attribution/attribution.js"></script>
   <script src="gentle-intro-to-quarto_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
@@ -1498,6 +1500,7 @@ summary(fit)`,
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'multiplex': {"secret":null,"id":"04977c7fe663f34a","url":"https://reveal-multiplex.glitch.me/"},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -1671,7 +1674,7 @@ summary(fit)`,
         plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealAttribution, QuartoSupport,
 
           RevealMath,
-          RevealNotes,
+          
           RevealSearch,
           RevealZoom
         ]
