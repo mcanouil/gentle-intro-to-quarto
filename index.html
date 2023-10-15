@@ -389,6 +389,7 @@
       margin-right: 0; 
     }
   </style>
+  <meta name="mermaid-theme" content="dark">
   <script src="gentle-intro-to-quarto_files/libs/quarto-diagram/mermaid.min.js"></script>
   <script src="gentle-intro-to-quarto_files/libs/quarto-diagram/mermaid-init.js"></script>
   <link href="gentle-intro-to-quarto_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
@@ -479,8 +480,7 @@
 <div class="cell-output-display">
 <div>
 <div>
-<pre class="mermaid mermaid-js">%%{init: { 'theme': 'dark' } }%%
-timeline
+<pre class="mermaid mermaid-js">timeline
     section Release
       1.0 : July, 2022
       1.1 : August, 2022
@@ -613,7 +613,7 @@ timeline
 <section id="checking-quarto-is-installed" class="slide level2">
 <h2>Checking Quarto is installed</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> check</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="quarto-layout-panel" data-layout-align="center" data-layout="[1, 1]">
+<div class="quarto-layout-panel" data-layout="[1, 1]" data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="assets/images/quarto-check.png"></p>
@@ -666,9 +666,9 @@ timeline
 </div>
 <div class="sourceCode" id="cb8" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project default Default</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-10_07331e8e438e6ee531c1efca71b95628">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-9_6e2176e4055aea6b040046d8d136fd86">
 <div class="cell-output cell-output-stdout">
-<pre style="font-size: 50%;"><code>Default
+<pre style="font-size: 50%;"><code>demo/Default
 ├── Default.qmd
 └── _quarto.yml
 
@@ -677,7 +677,7 @@ timeline
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-11_48c01855cbcacced41ed57670eed7487">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-10_75870c12d0c047b8189c2f31032ea020">
 <div style="text-align:center;">
 <p><img data-src="assets/images/quarto-project-default.png" class="quarto-figure-center"></p>
 </div>
@@ -691,7 +691,7 @@ timeline
 <ul>
 <li><code>_quarto.yml</code>: project configuration file.</li>
 </ul>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-12_6442446faae8629ef462bf84cf8e1bad">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-11_959088886b0cc72ac187414c280ebcab">
 <div class="cell-output cell-output-stdout">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -705,7 +705,7 @@ timeline
 <ul>
 <li><code>Default.qmd</code>: default Quarto document.</li>
 </ul>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-13_59e4c02d38f4a07b8197645c4a36c6eb">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-12_2d191012b02fa98e5ae2c36239756489">
 <div class="cell-output cell-output-stdout">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -733,9 +733,9 @@ timeline
 </div>
 <div class="sourceCode" id="cb12" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project website Website</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-15_add66fb9d6f756404ae1e70db115c6cb">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-13_ddebb21707334758e65577db854b2d4e">
 <div class="cell-output cell-output-stdout">
-<pre style="font-size: 50%;"><code>Website
+<pre style="font-size: 50%;"><code>demo/Website
 ├── _quarto.yml
 ├── about.qmd
 ├── index.qmd
@@ -746,7 +746,7 @@ timeline
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-16_221d85327108ed7e1f0c3ade2b57f15c">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-14_08d3c384049d3eb9561795ebc4167be2">
 <div style="text-align:center;">
 <p><img data-src="assets/images/quarto-project-website.png" class="quarto-figure-center"></p>
 </div>
@@ -766,9 +766,9 @@ timeline
 </div>
 <div class="sourceCode" id="cb14" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project blog Blog</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-18_ea84a6b35ea3e4ffa454b6c1797618c0">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-15_8a518f1760ba41b8ef28ca0b19c82714">
 <div class="cell-output cell-output-stdout">
-<pre style="font-size: 50%;"><code>Blog
+<pre style="font-size: 50%;"><code>demo/Blog
 ├── _quarto.yml
 ├── about.qmd
 ├── index.qmd
@@ -788,7 +788,7 @@ timeline
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-19_be64aeb1774128e75aeea04f94b82b1e">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-16_be5252a229824c3de5771764661dfd2c">
 <div style="text-align:center;">
 <p><img data-src="assets/images/quarto-project-blog.png" class="quarto-figure-center"></p>
 </div>
@@ -808,9 +808,9 @@ timeline
 </div>
 <div class="sourceCode" id="cb16" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project book Book</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-21_27aefe3d1573b126659dfb6044c505b6">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-17_98b16d2752ad54b9785a1a1161e656ed">
 <div class="cell-output cell-output-stdout">
-<pre style="font-size: 50%;"><code>Book
+<pre style="font-size: 50%;"><code>demo/Book
 ├── _quarto.yml
 ├── cover.png
 ├── index.qmd
@@ -824,7 +824,7 @@ timeline
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-22_d052791a18d84ba5f75caef322965c1b">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-18_7fd5f51bc74f49801f73d4c469405b61">
 <div style="text-align:center;">
 <p><img data-src="assets/images/quarto-project-book.png" class="quarto-figure-center"></p>
 </div>
@@ -844,9 +844,9 @@ timeline
 </div>
 <div class="sourceCode" id="cb18" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project manuscript Manuscript</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-24_6c0a55ff56315058942a4a51307dc47a">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-19_cbf5cc1d7b4a0a56f625ce5a12a97bce">
 <div class="cell-output cell-output-stdout">
-<pre style="font-size: 50%;"><code>Manuscript
+<pre style="font-size: 50%;"><code>demo/Manuscript
 ├── _quarto.yml
 ├── index.qmd
 └── references.bib
@@ -856,7 +856,7 @@ timeline
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-25_abe4266b6a6c4c6a5acdad05fe2ada74">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-20_3b17d4e87d25706e3770cd042e2ed077">
 <div style="text-align:center;">
 <p><img data-src="assets/images/quarto-project-manuscript.png" class="quarto-figure-center"></p>
 </div>
@@ -872,9 +872,9 @@ timeline
 </section>
 <section id="writing-using-the-visual-editor" class="slide level2 smaller">
 <h2>Writing using the Visual Editor</h2>
-<div class="cell panel-tabset" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-26_0b6de8c6fb6012b1f0623dac638c9ae9">
+<div class="cell panel-tabset" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-21_2e2609089047b2f9e6eaab1556098791">
 <ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">VSCODE</a></li><li><a href="#tabset-2-2">RSTUDIO</a></li></ul>
-<div class="cell tab-content" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-26_0b6de8c6fb6012b1f0623dac638c9ae9">
+<div class="cell tab-content" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-21_2e2609089047b2f9e6eaab1556098791">
 <div id="tabset-2-1">
 <p><a href="https://quarto.org/docs/visual-editor/vscode/"><img data-src="assets/images/quarto-visual-editor-vscode.png" alt="Screenshot of https://quarto.org/docs/visual-editor/vscode/ webpage"></a></p>
 </div>
@@ -893,25 +893,22 @@ timeline
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <div class="sourceCode" id="cb20"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{mermaid}</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="in">%%{init: { 'theme': 'dark' } }%%</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="in">flowchart LR</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="in">  qmd --&gt; J([Jupyter])</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="in">  qmd --&gt; K([knitr])</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="in">  J --&gt; md</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="in">  K --&gt; md</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="in">  md --&gt; P([pandoc])</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="in">  P --&gt; pdf</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="in">  P --&gt; html</span></span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="in">  P --&gt; docx</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="in">flowchart LR</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="in">  qmd --&gt; J([Jupyter])</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="in">  qmd --&gt; K([knitr])</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="in">  J --&gt; md</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="in">  K --&gt; md</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="in">  md --&gt; P([pandoc])</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="in">  P --&gt; pdf</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="in">  P --&gt; html</span></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="in">  P --&gt; docx</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-reveal="true">
+<div class="cell quarto-layout-cell" data-reveal="true" style="flex-basis: 50.0%;justify-content: center;">
 <div class="cell-output-display">
 <div>
 <div>
-<pre class="mermaid mermaid-js">%%{init: { 'theme': 'dark' } }%%
-flowchart LR
+<pre class="mermaid mermaid-js">flowchart LR
   qmd --&gt; J([Jupyter])
   qmd --&gt; K([knitr])
   J --&gt; md
@@ -921,7 +918,6 @@ flowchart LR
   P --&gt; html
   P --&gt; docx
 </pre>
-</div>
 </div>
 </div>
 </div>
@@ -983,7 +979,6 @@ flowchart LR
 <ul>
 <li>Source</li>
 </ul>
-<div style="font-size: 0.8em;">
 <div class="sourceCode" id="cb22"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
@@ -995,29 +990,29 @@ flowchart LR
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Take <span class="in">`penguins`</span>, and then,</span>
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>add new columns for the bill ratio and bill area.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
+</section>
+<section id="code-annotations-1" class="slide level2">
+<h2>Code annotations</h2>
 <ul>
 <li>Output</li>
 </ul>
-<div class="sourceCode" id="annotated-cell-23"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-23-1"><a href="#annotated-cell-23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="annotated-cell-23-2"><a href="#annotated-cell-23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-23" data-target-annotation="1">1</button><span id="annotated-cell-23-3" class="code-annotation-target"><a href="#annotated-cell-23-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-23" data-target-annotation="2">2</button><span id="annotated-cell-23-4" class="code-annotation-target"><a href="#annotated-cell-23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="annotated-cell-23-5"><a href="#annotated-cell-23-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_ratio =</span> bill_depth_mm <span class="sc">/</span> bill_length_mm,</span>
-<span id="annotated-cell-23-6"><a href="#annotated-cell-23-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_area  =</span> bill_depth_mm <span class="sc">*</span> bill_length_mm</span>
-<span id="annotated-cell-23-7"><a href="#annotated-cell-23-7" aria-hidden="true" tabindex="-1"></a>  )</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="annotated-cell-4"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><span id="annotated-cell-4-1"><a href="#annotated-cell-4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="annotated-cell-4-2"><a href="#annotated-cell-4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="1">1</button><span id="annotated-cell-4-3" class="code-annotation-target"><a href="#annotated-cell-4-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-4" data-target-annotation="2">2</button><span id="annotated-cell-4-4" class="code-annotation-target"><a href="#annotated-cell-4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="annotated-cell-4-5"><a href="#annotated-cell-4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_ratio =</span> bill_depth_mm <span class="sc">/</span> bill_length_mm,</span>
+<span id="annotated-cell-4-6"><a href="#annotated-cell-4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">bill_area  =</span> bill_depth_mm <span class="sc">*</span> bill_length_mm</span>
+<span id="annotated-cell-4-7"><a href="#annotated-cell-4-7" aria-hidden="true" tabindex="-1"></a>  )</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-23" data-target-annotation="1">1</dt>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-23" data-code-lines="3" data-code-annotation="1">Take <code>penguins</code>, and then,</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="3" data-code-annotation="1">Take <code>penguins</code>, and then,</span>
 </dd>
-<dt data-target-cell="annotated-cell-23" data-target-annotation="2">2</dt>
+<dt data-target-cell="annotated-cell-4" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-23" data-code-lines="4,5,6,7" data-code-annotation="2">add new columns for the bill ratio and bill area.</span>
+<span data-code-cell="annotated-cell-4" data-code-lines="4,5,6,7" data-code-annotation="2">add new columns for the bill ratio and bill area.</span>
 </dd>
 </dl>
-</div>
 </section>
 <section id="cross-references-figures" class="slide level2">
 <h2>Cross-references: “figures”</h2>
@@ -1141,7 +1136,6 @@ Cross-reference example&nbsp;1: The above is a custom cross-reference content.
 </figcaption>
 </figure>
 </div>
-<p><span class="fragment">It’s possible to reference the whole content above: <a href="#/cross-references-anything" class="quarto-xref">Cross-reference example&nbsp;1</a>.</span></p>
 </section>
 <section id="shortcodes" class="slide level2">
 <h2>Shortcodes</h2>
@@ -1429,7 +1423,7 @@ summary(fit)`,
 </section></section>
 <section id="quarto-resources" class="title-slide slide level1 center">
 <h1>Quarto resources</h1>
-<div class="quarto-layout-panel" data-layout-align="center" data-layout-ncol="2" style="text-align: center;">
+<div class="quarto-layout-panel" data-layout-ncol="2" style="text-align: center;" data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="assets/images/quarto-logo-trademark.svg" width="400"></p>
