@@ -764,22 +764,17 @@ quarto add coatless/quarto-webr
 
 :::
 
-::: {layout-ncol="2" layout-valign="center" .fragment}
-:::: {}
+::: {layout-ncol="2" layout-valign="center"}
 
 ```{{webr-r}}
 fit = lm(mpg ~ am, data = mtcars)
 summary(fit)
 ```
 
-::::
-
-:::: {.fragment}
 ```{webr-r}
 fit <- lm(mpg ~ am, data = mtcars)
 summary(fit)
 ```
-::::
 
 :::
 

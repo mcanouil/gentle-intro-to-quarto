@@ -6,3 +6,6 @@ _freeze
 **.html
 /.quarto/
 /.luarc.json
+**_site/
+**_manuscript/
+**_book/
