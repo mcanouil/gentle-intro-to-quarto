@@ -24,6 +24,7 @@ format:
     logo: https://raw.githubusercontent.com/mcanouil/hex-stickers/main/SVG/mc.svg
     mermaid:
       theme: dark
+    multiplex: true
 
 code-annotations: hover
 code-line-numbers: false
