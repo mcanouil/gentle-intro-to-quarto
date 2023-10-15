@@ -1,9 +1,12 @@
 project:
   type: default
   execute-dir: project
-  pre-render: rm -rf demo && mkdir demo
+  pre-render: bash projects.sh
   post-render:
     - poster.r
+  render:
+    - "gentle-intro-to-quarto.qmd"
+    - "!demo/"
 
 author:
   - name: Mickaël CANOUIL, *Ph.D.*
@@ -19,6 +22,8 @@ format:
   coeos-revealjs:
     theme: [_extensions/mcanouil/coeos/coeos.scss, assets/scss/custom-coeos.scss, assets/scss/no-title-slide-number.scss]
     logo: https://raw.githubusercontent.com/mcanouil/hex-stickers/main/SVG/mc.svg
+    mermaid:
+      theme: dark
 
 code-annotations: hover
 code-line-numbers: false

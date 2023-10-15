@@ -83,7 +83,6 @@ Pandoc ([pandoc.org](https://pandoc.org/)):
 ## A Guide to Quarto Versions
 
 ```{mermaid}
-%%{init: { 'theme': 'dark' } }%%
 timeline
     section Release
       1.0 : July, 2022
@@ -264,21 +263,13 @@ quarto create project
 
 :::: {}
 
-```{bash}
-#| include: false
-rm -rf demo/Default
-cd demo
-quarto create project default --no-open --no-prompt Default
-```
-
 ```{.bash filename="Bash"}
 quarto create project default Default
 ```
 
 ```{bash}
 #| attr-output: 'style="font-size: 50%;"'
-cd demo
-tree Default
+tree -I "demo" demo/Default
 ```
 
 ::::
@@ -331,21 +322,13 @@ cat(readLines("demo/Default/Default.qmd"), sep = "\n")
 
 :::: {}
 
-```{bash}
-#| include: false
-rm -rf demo/Website
-cd demo
-quarto create project website --no-open --no-prompt Website
-```
-
 ```{.bash filename="Bash"}
 quarto create project website Website
 ```
 
 ```{bash}
 #| attr-output: 'style="font-size: 50%;"'
-cd demo
-tree Website
+tree -I "demo" demo/Website
 ```
 
 ::::
@@ -380,21 +363,13 @@ cat("\n\n:::\n\n")
 
 :::: {}
 
-```{bash}
-#| include: false
-rm -rf demo/Blog
-cd demo
-quarto create project blog --no-open --no-prompt Blog
-```
-
 ```{.bash filename="Bash"}
 quarto create project blog Blog
 ```
 
 ```{bash}
 #| attr-output: 'style="font-size: 50%;"'
-cd demo
-tree Blog
+tree -I "demo" demo/Blog
 ```
 
 ::::
@@ -429,21 +404,13 @@ cat("\n\n:::\n\n")
 
 :::: {}
 
-```{bash}
-#| include: false
-rm -rf demo/Book
-cd demo
-quarto create project book --no-open --no-prompt Book
-```
-
 ```{.bash filename="Bash"}
 quarto create project book Book
 ```
 
 ```{bash}
 #| attr-output: 'style="font-size: 50%;"'
-cd demo
-tree Book
+tree -I "demo" demo/Book
 ```
 
 ::::
@@ -478,21 +445,13 @@ cat("\n\n:::\n\n")
 
 :::: {}
 
-```{bash}
-#| include: false
-rm -rf demo/Manuscript
-cd demo
-quarto create project manuscript --no-open --no-prompt Manuscript
-```
-
 ```{.bash filename="Bash"}
 quarto create project manuscript Manuscript
 ```
 
 ```{bash}
 #| attr-output: 'style="font-size: 50%;"'
-cd demo
-tree Manuscript
+tree -I "demo" demo/Manuscript
 ```
 
 ::::
@@ -558,7 +517,6 @@ for (ipage in names(pages)) {
 ::: {layout-ncol="2" layout-valign="center"}
 
 ```{{mermaid}}
-%%{init: { 'theme': 'dark' } }%%
 flowchart LR
   qmd --> J([Jupyter])
   qmd --> K([knitr])
@@ -569,11 +527,8 @@ flowchart LR
   P --> html
   P --> docx
 ```
-
-:::: {.fragment}
 
 ```{mermaid}
-%%{init: { 'theme': 'dark' } }%%
 flowchart LR
   qmd --> J([Jupyter])
   qmd --> K([knitr])
@@ -584,8 +539,6 @@ flowchart LR
   P --> html
   P --> docx
 ```
-
-::::
 
 :::
 
