@@ -1,5 +1,9 @@
 project:
+  type: default
   execute-dir: project
+  pre-render: rm -rf demo && mkdir demo
+  post-render:
+    - poster.r
 
 author:
   - name: Mickaël CANOUIL, *Ph.D.*
@@ -16,10 +20,15 @@ format:
     theme: [_extensions/mcanouil/coeos/coeos.scss, assets/scss/custom-coeos.scss, assets/scss/no-title-slide-number.scss]
     logo: https://raw.githubusercontent.com/mcanouil/hex-stickers/main/SVG/mc.svg
 
+code-annotations: hover
+code-line-numbers: false
 
 execute:
   freeze: auto
   cache: true
+
+filters:
+  - webr
 
 revealjs-plugins:
   - attribution
