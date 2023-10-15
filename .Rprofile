@@ -43,23 +43,15 @@ if (interactive()) {
       }
     ),
     width = 150,
-    menu.graphics = FALSE,
-    reprex.advertise = FALSE,
-    usethis.protocol = "https",
-    usethis.full_name = "Mickaël Canouil",
-    usethis.description = list(
-    `Authors@R` = paste0(
-        "person(",
-          'given = "Mickaël", ',
-          'family = "Canouil", ',
-          'role = c("aut", "cre"), ',
-          'email = "pro@mickael.canouil.dev", ',
-          'comment = c(ORCID = "0000-0002-3396-454")',
-        ")"
-      ),
-      Version = "0.0.0.9000"
-    )
+    menu.graphics = FALSE
   )
 
   if (nzchar(system.file(package = "prompt"))) prompt::set_prompt(prompt::prompt_git)
 }
+
+# webshot2::webshot(
+#   url = "gentle-intro-to-quarto.html",
+#   file = "gentle-intro-to-quarto.png",
+#   vwidth = 1920,
+#   vheight = 1080
+# )

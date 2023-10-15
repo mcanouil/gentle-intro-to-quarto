@@ -1,5 +1,5 @@
 ---
-title: '[Quarto]{style="font-size:200%;"}<br>A [_Not So_]{style="font-size:50%;"} Gentle Introduction'
+title: '![](assets/images/quarto-logo-trademark.svg){fig-alt="Quarto" height="2em"}<br>A [_Not So_]{style="font-size:50%;"} Gentle Introduction'
 pagetitle: "Quarto: A Gentle Introduction"
 code-line-numbers: false
 ---
@@ -8,7 +8,7 @@ code-line-numbers: false
 {{< include assets/quarto/_rlille-ad.qmd >}}
 :::
 
-# Quarto
+# ![](assets/images/quarto-logo-trademark.svg){fig-alt="Quarto" height="1em"}
 
 ## What is Quarto? {{< iconify thinking-face >}}
 
@@ -17,8 +17,8 @@ dir.create("assets/images", recursive = TRUE, showWarnings = FALSE)
 webshot2::webshot(
   url = "https://quarto.org/",
   file = "assets/images/quarto-org.png",
-  vwidth = 1920 * 0.60,
-  vheight = 1080 * 0.60,
+  vwidth = 1920 * 0.55,
+  vheight = 1080 * 0.55,
   cliprect = "viewport"
 )
 ```
@@ -64,9 +64,19 @@ Pandoc ([pandoc.org](https://pandoc.org/)):
 ::::
 :::
 
-## How does Quarto work?
+## A Guide to Quarto Versions
 
-{{< include assets/quarto/_quarto-flowchart.qmd >}}
+```{mermaid}
+%%{init: { 'logLevel': 'debug', 'theme': 'dark' } }%%
+timeline
+    section Release
+      1.0 : July, 2022
+      1.1 : August, 2022
+      1.2 : November, 2022
+      1.3 : April, 2023 : Current
+    section Pre-Release
+      1.4 : Fall 2023
+```
 
 # Getting started
 
@@ -79,8 +89,8 @@ file <- "assets/images/quarto-download.png"
 res <- webshot2::webshot(
   url = page,
   file = file,
-  vwidth = 1920 * 0.70,
-  vheight = 1080 * 0.70,
+  vwidth = 1920 * 0.75,
+  vheight = 1080 * 0.75,
   cliprect = "viewport"
 )
 cat(sprintf("\n\n[![](%s){width=100%% fig-align=center fig-alt='Screenshot of %s webpage'}](%s)", file, page, page))
@@ -151,7 +161,7 @@ cat("\n\n:::\n\n")
 ::::
 :::
 
-## Writing with your favourite editor
+## Writing with your favourite editor {.smaller}
 
 ```{r}
 #| classes: panel-tabset
@@ -160,6 +170,7 @@ pages <- sprintf(
   "https://quarto.org/docs/get-started/hello/%s",
   c(
     "vscode.html",
+    "jupyter.html",
     "rstudio.html",
     "neovim.html",
     "text-editor.html"
@@ -179,36 +190,6 @@ for (ipage in pages) {
   )
   cat("\n\n##", toupper(sub("\\.html$", "", basename(ipage))))
   cat(sprintf("\n\n[![](%s){fig-alt='Screenshot of %s webpage'}](%s)", file, ipage, ipage))
-}
-```
-
-::: {.attribution}
-<https://quarto.org/>
-:::
-
-## Writing using the Visual Editor
-
-```{r}
-#| classes: panel-tabset
-#| output: asis
-pages <- c(
-  "vscode" = "https://quarto.org/docs/visual-editor/vscode/",
-  "rstudio" = "https://quarto.org/docs/visual-editor/"
-)
-for (ipage in names(pages)) {
-  file <- sprintf(
-    "assets/images/quarto-visual-editor-%s.png",
-    ipage
-  )
-  webshot2::webshot(
-    url = pages[[ipage]],
-    file = file,
-    vwidth = 1920 * 1.2,
-    vheight = 1080 * 1,
-    cliprect = "viewport"
-  )
-  cat("\n\n##", toupper(ipage))
-  cat(sprintf("\n\n[![](%s){fig-alt='Screenshot of %s webpage'}](%s)", file, pages[[ipage]], pages[[ipage]]))
 }
 ```
 
@@ -238,3 +219,37 @@ quarto check
 :::
 
 {{< include assets/quarto/_about.qmd >}}
+
+::: {.content-hidden}
+
+## Writing using the Visual Editor {.smaller}
+
+```{r}
+#| classes: panel-tabset
+#| output: asis
+pages <- c(
+  "vscode" = "https://quarto.org/docs/visual-editor/vscode/",
+  "rstudio" = "https://quarto.org/docs/visual-editor/"
+)
+for (ipage in names(pages)) {
+  file <- sprintf(
+    "assets/images/quarto-visual-editor-%s.png",
+    ipage
+  )
+  webshot2::webshot(
+    url = pages[[ipage]],
+    file = file,
+    vwidth = 1920 * 1.2,
+    vheight = 1080 * 1,
+    cliprect = "viewport"
+  )
+  cat("\n\n##", toupper(ipage))
+  cat(sprintf("\n\n[![](%s){fig-alt='Screenshot of %s webpage'}](%s)", file, pages[[ipage]], pages[[ipage]]))
+}
+```
+
+::: {.attribution}
+<https://quarto.org/>
+:::
+
+:::
