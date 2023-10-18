@@ -27,7 +27,7 @@ format:
     multiplex: true
 
 title-slide-attributes:
-  data-background-image: /assets/images/saga.png
+  data-background-image: assets/images/saga.png
   data-background-opacity: "0.35"
 
 code-annotations: hover

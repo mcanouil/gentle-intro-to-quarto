@@ -24,7 +24,7 @@ resources:
 {{< include assets/quarto/_rlille-ad.qmd >}}
 :::
 
-# ![](assets/images/quarto-logo-trademark.svg){fig-alt="Quarto" height="1em"} {background-image="/assets/images/saga.png" background-opacity="0.35"}
+# ![](assets/images/quarto-logo-trademark.svg){fig-alt="Quarto" height="1em"} {background-image="assets/images/saga.png" background-opacity="0.35"}
 
 ## What is Quarto? {{< iconify thinking-face >}}
 
@@ -121,7 +121,7 @@ timeline
       1.4 : Fall 2023
 ```
 
-# Getting started {background-image="/assets/images/saga.png" background-opacity="0.35"}
+# Getting started {background-image="assets/images/saga.png" background-opacity="0.35"}
 
 ## Downloading and installing Quarto
 
@@ -540,7 +540,7 @@ cat("\n\n:::\n\n")
 [Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo/Manuscript)
 :::
 
-# Quarto features {background-image="/assets/images/saga.png" background-opacity="0.35"}
+# Quarto features {background-image="assets/images/saga.png" background-opacity="0.35"}
 
 ## Writing using the Visual Editor {.smaller}
 
@@ -889,7 +889,7 @@ Discover more extensions at:
 [Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo/Webr)
 :::
 
-# Quarto resources {background-image="/assets/images/saga.png" background-opacity="0.35"}
+# Quarto resources {background-image="assets/images/saga.png" background-opacity="0.35"}
 
 ::: {layout-ncol="2" layout-valign="center" layout-align="center" style="text-align: center;"}
 ![](assets/images/quarto-logo-trademark.svg){width="400px"} 
