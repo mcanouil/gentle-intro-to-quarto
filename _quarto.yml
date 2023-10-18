@@ -26,6 +26,10 @@ format:
       theme: dark
     multiplex: true
 
+title-slide-attributes:
+  data-background-image: /assets/images/saga.png
+  data-background-opacity: "0.5"
+
 code-annotations: hover
 code-line-numbers: false
 
