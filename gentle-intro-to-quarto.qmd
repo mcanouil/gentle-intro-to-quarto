@@ -221,6 +221,10 @@ for (ipage in pages) {
 quarto --help
 ```
 
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo)
+:::
+
 ## Checking Quarto is installed
 
 ```bash
@@ -231,6 +235,10 @@ quarto check
 ![](assets/images/quarto-check.png)
 
 {{< video assets/videos/quarto-check.mov >}}
+:::
+
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo)
 :::
 
 ## Creating a new Quarto project
@@ -298,6 +306,10 @@ cat("\n\n:::\n\n")
 
 :::
 
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo/Default)
+:::
+
 ## Quarto projects: `default`
 
 - `_quarto.yml`: project configuration file.
@@ -315,6 +327,10 @@ cat(readLines("demo/Default/_quarto.yml"), sep = "\n")
 #| class-output: markdown
 cat(readLines("demo/Default/Default.qmd"), sep = "\n")
 ```
+
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo/Default)
+:::
 
 ## Quarto projects: `website`
 
@@ -355,6 +371,10 @@ cat("\n\n:::\n\n")
 
 ::::
 
+:::
+
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo/Website)
 :::
 
 ## Quarto projects: `blog`
@@ -398,6 +418,10 @@ cat("\n\n:::\n\n")
 
 :::
 
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo/Blog)
+:::
+
 ## Quarto projects: `book`
 
 ::: {layout-ncol="2" layout-valign="center"}
@@ -437,6 +461,10 @@ cat("\n\n:::\n\n")
 
 ::::
 
+:::
+
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo/Book)
 :::
 
 ## Quarto projects: `manuscript`
@@ -480,6 +508,10 @@ cat("\n\n:::\n\n")
 
 :::
 
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo/Manuscript)
+:::
+
 # Quarto features
 
 ## Writing using the Visual Editor {.smaller}
@@ -512,6 +544,10 @@ for (ipage in names(pages)) {
 <https://quarto.org/>
 :::
 
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo)
+:::
+
 ## Mermaid Diagrams
 
 ::: {layout-ncol="2" layout-valign="center"}
@@ -540,6 +576,10 @@ flowchart LR
   P --> docx
 ```
 
+:::
+
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo)
 :::
 
 ## Markdown tables
@@ -574,6 +614,10 @@ flowchart LR
 
 :::
 
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo)
+:::
+
 ## Code annotations
 
 - Source
@@ -592,6 +636,10 @@ penguins |>                                            # <1>
 2. add new columns for the bill ratio and bill area.
 ````
 
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo)
+:::
+
 ## Code annotations
 
 - Output
@@ -607,6 +655,10 @@ penguins |>                                            # <1>
 ```
 1. Take `penguins`, and then,
 2. add new columns for the bill ratio and bill area.
+
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo)
+:::
 
 ## Cross-references: "figures"
 
@@ -640,6 +692,10 @@ Or is it?
 :::::
 :::
 
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo)
+:::
+
 ## Cross-references: "tables"
 
 ::: {layout-ncol="2" layout-valign="center"}
@@ -670,6 +726,10 @@ This is a caption for the table.
 @tbl-example is the reference to a table.
 Or is it?
 :::::
+:::
+
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo)
 :::
 
 ## Cross-references: "anything"
@@ -723,6 +783,10 @@ The above is a custom cross-reference content.
 
 :::::
 
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo)
+:::
+
 ## Shortcodes
 
 ::: {layout-ncol="2" layout-valign="center" .fragment}
@@ -751,6 +815,10 @@ The above is a custom cross-reference content.
 :::: {.fragment}
 {{< iconify exploding-head size=5x >}}
 ::::
+:::
+
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo)
 :::
 
 ## Extensions
@@ -787,6 +855,10 @@ Discover more extensions at:
 
 ::: {.attribution}
 <https://quarto-webr.thecoatlessprofessor.com/>
+:::
+
+::: {.notes}
+[Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo/Webr)
 :::
 
 # Quarto resources
