@@ -410,7 +410,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-image="/assets/images/saga.png" data-background-size="contain" class="quarto-title-block center">
+<section id="title-slide" data-background-image="/assets/images/saga.png" data-background-opacity="0.35" class="quarto-title-block center">
   <h1 class="title"><img data-src="assets/images/quarto-logo-trademark.svg" style="height:2em" alt="Quarto"><br>A <span style="font-size:50%;"><em>Not So</em></span> Gentle Introduction</h1>
 
 <div class="quarto-title-authors">
@@ -427,7 +427,7 @@
   <p class="date">Thursday, the 19th of October, 2023</p>
 </section>
 <section>
-<section id="section-1" class="title-slide slide level1 center">
+<section id="section-1" class="title-slide slide level1 center" data-background-image="/assets/images/saga.png" data-background-opacity="0.35">
 <h1><img data-src="assets/images/quarto-logo-trademark.svg" style="height:1em" alt="Quarto"></h1>
 
 </section>
@@ -474,6 +474,40 @@
 </div>
 </div>
 </section>
+<section id="how-does-quarto-work" class="slide level2">
+<h2>How does Quarto work? <iconify-icon inline="" icon="fluent-emoji:thinking-face"></iconify-icon></h2>
+<div class="cell" data-reveal="true" data-fig-width="10">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">%%{
+  init: {
+    "theme": "dark",
+    "themeCSS": ".label foreignObject, .cluster-label foreignObject { font-size: 90%; overflow: visible; }"
+  }
+}%%
+flowchart LR
+  A1[qmd] --&gt; C{"knitr&lt;br&gt;(R)"}
+  A1[qmd] --&gt; B{"Jupyter&lt;br&gt;(Python)"}
+  A2[ipynb] --&gt; B{"Jupyter&lt;br&gt;(Python)"}
+  B --&gt; D[md]
+  C --&gt; D[md]
+  D --&gt; E{Pandoc}
+  E --&gt; F[pdf]
+  E --&gt; G[docx]
+  E --&gt; H[html]
+  E --&gt; I[...]
+
+  subgraph engine [Engine]
+  B
+  C
+  end
+</pre>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="a-guide-to-quarto-versions" class="slide level2">
 <h2>A Guide to Quarto Versions</h2>
 <div class="cell" data-reveal="true">
@@ -495,13 +529,13 @@
 </div>
 </section></section>
 <section>
-<section id="getting-started" class="title-slide slide level1 center">
+<section id="getting-started" class="title-slide slide level1 center" data-background-image="/assets/images/saga.png" data-background-opacity="0.35">
 <h1>Getting started</h1>
 
 </section>
 <section id="downloading-and-installing-quarto" class="slide level2">
 <h2>Downloading and installing Quarto</h2>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-4_8ac579bae74e73875e85b930bba7e4d2">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-5_973171b64b6c8c1f89b9e14eb1f01083">
 <p><a href="https://quarto.org/docs/download/"><img data-src="assets/images/quarto-download.png" class="quarto-figure-center" style="width:100.0%" alt="Screenshot of https://quarto.org/docs/download/ webpage"></a></p>
 </div>
 <div class="attribution">
@@ -522,7 +556,7 @@
 </div>
 <div class="sourceCode" id="cb1" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install quarto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-5_6d30dad661c3dcb8837d51f3049361c0">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-6_1adee96c45bfc88367c2550e667efe88">
 <div style="text-align:center;">
 <p><a href="https://formulae.brew.sh/cask/quarto"><img data-src="assets/images/quarto-homebrew.png" alt="Screenshot of https://brew.sh/ webpage"></a></p>
 </div>
@@ -537,7 +571,7 @@
 </div>
 <div class="sourceCode" id="cb2" data-filename="PowerShell"><pre class="sourceCode PowerShell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>choco install quarto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-6_4ac62792d6d804922913e716e90f9d9c">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-7_48d4e4f955d9d0df7ed4e1fc9fe0fa6a">
 <div style="text-align:center;">
 <p><a href="https://community.chocolatey.org/packages/quarto"><img data-src="assets/images/quarto-chocolatey.png" class="quarto-figure-center" alt="Screenshot of https://community.chocolatey.org/ webpage"></a></p>
 </div>
@@ -547,9 +581,9 @@
 </section>
 <section id="writing-with-your-favourite-editor" class="slide level2 smaller">
 <h2>Writing with your favourite editor</h2>
-<div class="cell panel-tabset" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-7_98321859caa9c302fbb72eb2d923a274">
+<div class="cell panel-tabset" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-8_b3cdd7330aca5636675bec541bd67914">
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">VSCODE</a></li><li><a href="#tabset-1-2">JUPYTER</a></li><li><a href="#tabset-1-3">RSTUDIO</a></li><li><a href="#tabset-1-4">NEOVIM</a></li><li><a href="#tabset-1-5">TEXT-EDITOR</a></li></ul>
-<div class="cell tab-content" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-7_98321859caa9c302fbb72eb2d923a274">
+<div class="cell tab-content" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-8_b3cdd7330aca5636675bec541bd67914">
 <div id="tabset-1-1">
 <p><a href="https://quarto.org/docs/get-started/hello/vscode.html"><img data-src="assets/images/quarto-get-started-vscode.png" alt="Screenshot of https://quarto.org/docs/get-started/hello/vscode.html webpage"></a></p>
 </div>
@@ -573,10 +607,10 @@
 </section>
 <section id="quarto-a-command-line-interface" class="slide level2">
 <h2>Quarto: a command line interface</h2>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-8_8c62f2263a6c13968f2a7e2e448e716a">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-9_be390d47717c5e03f14da6ab2f879bbb">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell fragment" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-8_8c62f2263a6c13968f2a7e2e448e716a">
+<div class="cell fragment" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-9_be390d47717c5e03f14da6ab2f879bbb">
 <div class="cell-output cell-output-stdout">
 <pre style="font-size: 28%;"><code>
   Usage:   quarto
@@ -593,20 +627,20 @@
 
   Commands:
 
-    render          [input] [args...]     - Render files or projects to various document types.        
-    preview         [file] [args...]      - Render and preview a document or website project.          
-    serve           [input]               - Serve a Shiny interactive document.                        
-    create          [type] [commands...]  - Create a Quarto project or extension                       
-    create-project  [dir]                 - Create a project for rendering multiple documents          
-    convert         &lt;input&gt;               - Convert documents to alternate representations.            
-    pandoc          [args...]             - Run the version of Pandoc embedded within Quarto.          
-    typst           [args...]             - Run the version of Typst embedded within Quarto.           
-    run             [script] [args...]    - Run a TypeScript, R, Python, or Lua script.                
-    add             &lt;extension&gt;           - Add an extension to this folder or project                 
-    install         [target...]           - Installs an extension or global dependency.                
-    publish         [provider] [path]     - Publish a document or project. Available providers include:
-    check           [target]              - Verify correct functioning of Quarto installation.         
-    help            [command]             - Show this help or the help of a sub-command.               </code></pre>
+    render          [input] [args...]     - Render files or projects to various document types.
+    preview         [file] [args...]      - Render and preview a document or website project.  
+    serve           [input]               - Serve a Shiny interactive document.                
+    create          [type] [commands...]  - Create a Quarto project or extension               
+    create-project  [dir]                 - Create a project for rendering multiple documents  
+    convert         &lt;input&gt;               - Convert documents to alternate representations.    
+    pandoc          [args...]             - Run the version of Pandoc embedded within Quarto.  
+    typst           [args...]             - Run the version of Typst embedded within Quarto.   
+    run             [script] [args...]    - Run a TypeScript, R, Python, or Lua script.        
+    add             &lt;extension&gt;           - Add an extension to this folder or project         
+    install         [target...]           - Installs an extension or global dependency.        
+    publish         [provider] [path]     - Publish a document or project to a provider.       
+    check           [target]              - Verify correct functioning of Quarto installation. 
+    help            [command]             - Show this help or the help of a sub-command.       </code></pre>
 </div>
 </div>
 <aside class="notes">
@@ -692,7 +726,7 @@
 </div>
 <div class="sourceCode" id="cb8" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project default Default</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-9_6e2176e4055aea6b040046d8d136fd86">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-10_b87c5797be78aac34ff294d32bde4e11">
 <div class="cell-output cell-output-stdout">
 <pre style="font-size: 50%;"><code>demo/Default
 ├── Default.qmd
@@ -703,7 +737,7 @@
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-10_75870c12d0c047b8189c2f31032ea020">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-11_48c01855cbcacced41ed57670eed7487">
 <div style="text-align:center;">
 <p><img data-src="assets/images/quarto-project-default.png" class="quarto-figure-center"></p>
 </div>
@@ -730,7 +764,7 @@
 <ul>
 <li><code>_quarto.yml</code>: project configuration file.</li>
 </ul>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-11_959088886b0cc72ac187414c280ebcab">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-12_6442446faae8629ef462bf84cf8e1bad">
 <div class="cell-output cell-output-stdout">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -744,7 +778,7 @@
 <ul>
 <li><code>Default.qmd</code>: default Quarto document.</li>
 </ul>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-12_2d191012b02fa98e5ae2c36239756489">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-13_59e4c02d38f4a07b8197645c4a36c6eb">
 <div class="cell-output cell-output-stdout">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -785,7 +819,7 @@
 </div>
 <div class="sourceCode" id="cb12" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project website Website</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-13_ddebb21707334758e65577db854b2d4e">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-14_e067458968929760f8cc7a65c2daa8ea">
 <div class="cell-output cell-output-stdout">
 <pre style="font-size: 50%;"><code>demo/Website
 ├── _quarto.yml
@@ -798,7 +832,7 @@
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-14_08d3c384049d3eb9561795ebc4167be2">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-15_bfd8fc743ec4752babb502ce7b5cb9b6">
 <div style="text-align:center;">
 <p><img data-src="assets/images/quarto-project-website.png" class="quarto-figure-center"></p>
 </div>
@@ -831,7 +865,7 @@
 </div>
 <div class="sourceCode" id="cb14" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project blog Blog</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-15_8a518f1760ba41b8ef28ca0b19c82714">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-16_559949013bb8b113f1ed33b0d2beb9a1">
 <div class="cell-output cell-output-stdout">
 <pre style="font-size: 50%;"><code>demo/Blog
 ├── _quarto.yml
@@ -853,7 +887,7 @@
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-16_be5252a229824c3de5771764661dfd2c">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-17_f3cdbfe93c96306918f1f02bf0da620b">
 <div style="text-align:center;">
 <p><img data-src="assets/images/quarto-project-blog.png" class="quarto-figure-center"></p>
 </div>
@@ -886,7 +920,7 @@
 </div>
 <div class="sourceCode" id="cb16" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project book Book</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-17_98b16d2752ad54b9785a1a1161e656ed">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-18_2118d40ff596153110d8733b49a10c33">
 <div class="cell-output cell-output-stdout">
 <pre style="font-size: 50%;"><code>demo/Book
 ├── _quarto.yml
@@ -902,7 +936,7 @@
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-18_7fd5f51bc74f49801f73d4c469405b61">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-19_a9222731f31802214c37e841d697d5a7">
 <div style="text-align:center;">
 <p><img data-src="assets/images/quarto-project-book.png" class="quarto-figure-center"></p>
 </div>
@@ -935,7 +969,7 @@
 </div>
 <div class="sourceCode" id="cb18" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project manuscript Manuscript</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-19_cbf5cc1d7b4a0a56f625ce5a12a97bce">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-20_ad8df7db25f9c96c5c88ceb1a1e71bfc">
 <div class="cell-output cell-output-stdout">
 <pre style="font-size: 50%;"><code>demo/Manuscript
 ├── _quarto.yml
@@ -947,7 +981,7 @@
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-20_3b17d4e87d25706e3770cd042e2ed077">
+<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-21_547c7e8f86e5f779a3cc78473355ddc5">
 <div style="text-align:center;">
 <p><img data-src="assets/images/quarto-project-manuscript.png" class="quarto-figure-center"></p>
 </div>
@@ -970,15 +1004,15 @@
       }</style></aside>
 </section></section>
 <section>
-<section id="quarto-features" class="title-slide slide level1 center">
+<section id="quarto-features" class="title-slide slide level1 center" data-background-image="/assets/images/saga.png" data-background-opacity="0.35">
 <h1>Quarto features</h1>
 
 </section>
 <section id="writing-using-the-visual-editor" class="slide level2 smaller">
 <h2>Writing using the Visual Editor</h2>
-<div class="cell panel-tabset" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-21_2e2609089047b2f9e6eaab1556098791">
+<div class="cell panel-tabset" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-22_8a4d3350ad9672e7648f6d7bf66bfea3">
 <ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">VSCODE</a></li><li><a href="#tabset-2-2">RSTUDIO</a></li></ul>
-<div class="cell tab-content" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-21_2e2609089047b2f9e6eaab1556098791">
+<div class="cell tab-content" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-22_8a4d3350ad9672e7648f6d7bf66bfea3">
 <div id="tabset-2-1">
 <p><a href="https://quarto.org/docs/visual-editor/vscode/"><img data-src="assets/images/quarto-visual-editor-vscode.png" alt="Screenshot of https://quarto.org/docs/visual-editor/vscode/ webpage"></a></p>
 </div>
@@ -1655,9 +1689,9 @@ summary(fit)`,
           display:block!important;
       }</style></aside>
 </section></section>
-<section id="quarto-resources" class="title-slide slide level1 center">
+<section id="quarto-resources" class="title-slide slide level1 center" data-background-image="/assets/images/saga.png" data-background-opacity="0.35">
 <h1>Quarto resources</h1>
-<div class="quarto-layout-panel" data-layout-ncol="2" style="text-align: center;" data-layout-align="center">
+<div class="quarto-layout-panel" style="text-align: center;" data-layout-ncol="2" data-layout-align="center">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="assets/images/quarto-logo-trademark.svg" width="400"></p>
@@ -1673,7 +1707,7 @@ summary(fit)`,
 </ul>
 </section>
 
-<section id="about" class="title-slide slide level1 center">
+<section id="about" class="title-slide slide level1 center" data-background-image="/assets/images/saga.png" data-background-opacity="0.35">
 <h1>About</h1>
 <div class="quarto-layout-panel" data-layout="[0.38, -0.02, 0.60]">
 <div class="quarto-layout-row quarto-layout-valign-center">
