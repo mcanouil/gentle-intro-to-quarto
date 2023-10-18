@@ -1,4 +1,4 @@
-# About {background-image="/assets/images/saga.png" background-opacity="0.35"}
+# About {background-image="assets/images/saga.png" background-opacity="0.35"}
 
 ::: {layout="[0.38, -0.02, 0.60]" layout-valign="center"}
 <img src = "https://github.com/mcanouil.png" class = "picture" />
