@@ -24,7 +24,7 @@ resources:
 {{< include assets/quarto/_rlille-ad.qmd >}}
 :::
 
-# ![](assets/images/quarto-logo-trademark.svg){fig-alt="Quarto" height="1em"}
+# ![](assets/images/quarto-logo-trademark.svg){fig-alt="Quarto" height="1em"} {background-image="/assets/images/saga.png" background-opacity="0.35"}
 
 ## What is Quarto? {{< iconify thinking-face >}}
 
@@ -80,6 +80,34 @@ Pandoc ([pandoc.org](https://pandoc.org/)):
 ::::
 :::
 
+## How does Quarto work? {{< iconify thinking-face >}}
+
+```{mermaid}
+%%| fig-width: 10
+%%{
+  init: {
+    "theme": "dark",
+    "themeCSS": ".label foreignObject, .cluster-label foreignObject { font-size: 90%; overflow: visible; }"
+  }
+}%%
+flowchart LR
+  A1[qmd] --> C{"knitr<br>(R)"}
+  A1[qmd] --> B{"Jupyter<br>(Python)"}
+  A2[ipynb] --> B{"Jupyter<br>(Python)"}
+  B --> D[md]
+  C --> D[md]
+  D --> E{Pandoc}
+  E --> F[pdf]
+  E --> G[docx]
+  E --> H[html]
+  E --> I[...]
+
+  subgraph engine [Engine]
+  B
+  C
+  end
+```
+
 ## A Guide to Quarto Versions
 
 ```{mermaid}
@@ -93,7 +121,7 @@ timeline
       1.4 : Fall 2023
 ```
 
-# Getting started
+# Getting started {background-image="/assets/images/saga.png" background-opacity="0.35"}
 
 ## Downloading and installing Quarto
 
@@ -512,7 +540,7 @@ cat("\n\n:::\n\n")
 [Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo/Manuscript)
 :::
 
-# Quarto features
+# Quarto features {background-image="/assets/images/saga.png" background-opacity="0.35"}
 
 ## Writing using the Visual Editor {.smaller}
 
@@ -861,7 +889,7 @@ Discover more extensions at:
 [Open Visual Studio Code](vscode://file//Users/mcanouil/Projects/perso/gentle-intro-to-quarto/demo/Webr)
 :::
 
-# Quarto resources
+# Quarto resources {background-image="/assets/images/saga.png" background-opacity="0.35"}
 
 ::: {layout-ncol="2" layout-valign="center" layout-align="center" style="text-align: center;"}
 ![](assets/images/quarto-logo-trademark.svg){width="400px"} 
