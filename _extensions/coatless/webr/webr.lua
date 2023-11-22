@@ -9,7 +9,7 @@ local hasDoneWebRSetup = false
 -- https://docs.r-wasm.org/webr/latest/api/js/interfaces/WebR.WebROptions.html
 
 -- Define a base compatibile version
-local baseVersionWebR = "0.2.1"
+local baseVersionWebR = "0.2.2"
 
 -- Define where WebR can be found
 local baseUrl = "https://webr.r-wasm.org/v".. baseVersionWebR .."/"
@@ -33,6 +33,9 @@ local showHeaderMessage = "false"
 
 -- Define an empty string if no packages need to be installed.
 local installRPackagesList = "''"
+
+-- Define whether R packages should automatically be loaded
+local autoloadRPackages = "true"
 ----
 
 --- Setup variables for tracking number of code cells
@@ -105,9 +108,9 @@ function setWebRInitializationOptions(meta)
   -- https://docs.r-wasm.org/webr/latest/api/js/interfaces/WebR.WebROptions.html#channeltype
   if not is_variable_empty(webr["channel-type"]) then
     channelType = convertMetaChannelTypeToWebROption(pandoc.utils.stringify(webr["channel-type"]))
-    if not (channelType == "ChannelType.Automatic" and channelType == "ChannelType.ServiceWorker") then
-      hasServiceWorkerFiles = false
-    end
+    
+    -- Starting from webR v0.2.2, service workers are only deployed when explicitly requested.
+    hasServiceWorkerFiles = (channelType == "ChannelType.ServiceWorker")
   end
 
   -- The base URL from where to load JavaScript worker scripts when loading webR
@@ -150,6 +153,11 @@ function setWebRInitializationOptions(meta)
     end
 
     installRPackagesList = table.concat(package_list, ", ")
+
+    if not is_variable_empty(webr['autoload-packages']) then
+      autoloadRPackages = pandoc.utils.stringify(webr["autoload-packages"])
+    end
+
   end
 
   
@@ -292,7 +300,8 @@ function initializationWebR()
     ["CHANNELTYPE"] = channelType,
     ["SERVICEWORKERURL"] = serviceWorkerUrl, 
     ["HOMEDIR"] = homeDir,
-    ["INSTALLRPACKAGESLIST"] = installRPackagesList
+    ["INSTALLRPACKAGESLIST"] = installRPackagesList,
+    ["AUTOLOADRPACKAGES"] = autoloadRPackages
     -- ["VERSION"] = baseVersionWebR
   }
   

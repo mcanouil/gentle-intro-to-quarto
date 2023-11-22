@@ -18,6 +18,8 @@ filters:
 resources:
   - webr-serviceworker.js
   - webr-worker.js
+webr: 
+  show-startup-message: false
 ---
 
 ::: {.content-visible when-profile="rlille"}
