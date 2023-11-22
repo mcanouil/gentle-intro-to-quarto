@@ -394,7 +394,296 @@
   <script src="gentle-intro-to-quarto_files/libs/quarto-diagram/mermaid-init.js"></script>
   <link href="gentle-intro-to-quarto_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
   <link rel="shortcut icon" href="https://raw.githubusercontent.com/mcanouil/hex-stickers/main/SVG/coeos.svg">
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs/editor/editor.main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <style>
+    .monaco-editor pre {
+      background-color: unset !important;
+    }
+
+    .qwebr-icon-status-spinner {
+      color: #7894c4;
+    }
+
+    .qwebr-icon-run-code {
+      color: #0d9c29
+    }
+
+    .qwebr-output-code-stdout {
+      color: #111;
+    }
+
+    .qwebr-output-code-stderr {
+      color: #db4133;
+    }
+
+    .qwebr-button-run {
+      background-color: #EEEEEE;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0; /* Extra styling for consistency */
+      display: inline-block;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #000;
+      text-align: center;
+      text-decoration: none;
+      -webkit-text-decoration: none;
+      -moz-text-decoration: none;
+      -ms-text-decoration: none;
+      -o-text-decoration: none;
+      /* vertical-align: middle; */ /* Prevents a space from appearing between the code cell and button */
+      -webkit-user-select: none;
+      border-color: #dee2e6;
+      border: 1px solid rgba(0,0,0,0);
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      border-top-right-radius: 0.25rem;
+      border-top-left-radius: 0.25rem;
+      transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    .qwebr-button-run:hover {
+      color: #000;
+      background-color: #e3e6ea;
+      border-color: #e1e5e9;
+    }
+
+    .qwebr-button-run:disabled,.qwebr-button-run.disabled,fieldset:disabled .qwebr-button-run {
+      pointer-events: none;
+      opacity: .65
+    }
+
+    /* Custom styling for RevealJS Presentations*/
+
+    /* Reset the style of the interactive area */
+    .reveal div.qwebr-interactive-area {
+      width: 100%;
+      height: 100%;
+      display: block;
+      box-shadow: none;
+      max-width: 100%;
+      max-height: 100%;
+      margin: 0;
+      padding: 0;
+    } 
+
+    /* Pad the right side by 10 px to avoid rubbing the border */
+    .reveal div.qwebr-output-code-area pre {
+      padding: 0px 0px 0px 10px;
+    }
+
+    /* Collapse the inside code tags to avoid extra space between line outputs */
+    .reveal pre div code.qwebr-output-code-stdout, .reveal pre div code.qwebr-output-code-stderr {
+      padding: 0;
+      display: contents;
+    }
+
+    .reveal pre div code.qwebr-output-code-stdout {
+      color: #111;
+    }
+
+    .reveal pre div code.qwebr-output-code-stderr {
+      color: #db4133;
+    }
+
+
+    /* Create a border around console and output (does not effect graphs) */
+    .reveal div.qwebr-console-area {
+      border: 1px solid #EEEEEE;
+      box-shadow: 2px 2px 10px #EEEEEE;
+    }
+
+    /* Cap output height and allow text to scroll */
+    /* TODO: Is there a better way to fit contents/max it parallel to the monaco editor size? */
+    .reveal div.qwebr-output-code-area pre {
+      max-height: 400px;
+      overflow: scroll;
+    }
+  </style>
+
+  <script type="module">
+
+    // Start a timer
+    const initializeWebRTimerStart = performance.now();
+
+    // Determine if we need to install R packages
+    var installRPackagesList = [''];
+    // Check to see if we have an empty array, if we do set to skip the installation.
+    var setupRPackages = !(installRPackagesList.indexOf("") !== -1);
+    var autoloadRPackages = true;
+
+    // Display a startup message?
+    var showStartupMessage = false;
+    var showHeaderMessage = false;
+    if (showStartupMessage) {
+
+      // Get references to header elements
+      const headerHTML = document.getElementById("title-block-header");
+      const headerRevealJS = document.getElementById("title-slide");
+
+      // Create the outermost div element for metadata
+      const quartoTitleMeta = document.createElement("div");
+      quartoTitleMeta.classList.add("quarto-title-meta");
+
+      // Create the first inner div element
+      const firstInnerDiv = document.createElement("div");
+
+      // Create the second inner div element for "WebR Status" heading and contents
+      const secondInnerDiv = document.createElement("div");
+      secondInnerDiv.classList.add("quarto-title-meta-heading");
+      secondInnerDiv.innerText = "WebR Status";
+
+      // Create another inner div for contents
+      const secondInnerDivContents = document.createElement("div");
+      secondInnerDivContents.classList.add("quarto-title-meta-contents");
+
+      // Describe the WebR state
+      var startupMessageWebR = document.createElement("p");
+      startupMessageWebR.innerText = "🟡 Loading...";
+      startupMessageWebR.setAttribute("id", "startup");
+      // Add `aria-live` to auto-announce the startup status to screen readers
+      startupMessageWebR.setAttribute("aria-live", "assertive");
+
+      // Append the startup message to the contents
+      secondInnerDivContents.appendChild(startupMessageWebR);
+
+      // Add a status indicator for COOP and COEP Headers if needed
+      if (showHeaderMessage) {
+        const crossOriginMessage = document.createElement("p");
+        crossOriginMessage.innerText = `${crossOriginIsolated ? '🟢' : '🟡'} COOP & COEP Headers`;
+        crossOriginMessage.setAttribute("id", "coop-coep-header");
+        secondInnerDivContents.appendChild(crossOriginMessage);
+      }
+
+      // Combine the inner divs and contents
+      firstInnerDiv.appendChild(secondInnerDiv);
+      firstInnerDiv.appendChild(secondInnerDivContents);
+      quartoTitleMeta.appendChild(firstInnerDiv);
+
+      // Determine where to insert the quartoTitleMeta element
+      if (headerHTML) {
+        // Append to the existing "title-block-header" element
+        headerHTML.appendChild(quartoTitleMeta);
+      } else if (headerRevealJS) {
+        // If using RevealJS, add to the "title-slide" div
+        headerRevealJS.appendChild(firstInnerDiv);
+      } else {
+        // If neither headerHTML nor headerRevealJS is found, insert after "webr-monaco-editor-init" script
+        const monacoScript = document.getElementById("webr-monaco-editor-init");
+        const header = document.createElement("header");
+        header.setAttribute("id", "title-block-header");
+        header.appendChild(quartoTitleMeta);
+        monacoScript.after(header);
+      }
+    }
+
+    // Retrieve the webr.mjs
+    import { WebR, ChannelType } from "https://webr.r-wasm.org/v0.2.2/webr.mjs";
+
+    // Populate WebR options with defaults or new values based on 
+    // webr meta
+    globalThis.webR = new WebR({
+      "baseURL": "https://webr.r-wasm.org/v0.2.2/",
+      "serviceWorkerUrl": "",
+      "homedir": "/home/web_user", 
+      "channelType": ChannelType.Automatic
+    });
+
+    // Initialization WebR
+    await globalThis.webR.init();
+
+    // Setup a shelter
+    globalThis.webRCodeShelter = await new globalThis.webR.Shelter();
+
+    // Setup a pager to allow processing help documentation 
+    await globalThis.webR.evalRVoid('webr::pager_install()'); 
+
+    // Function to set the button text
+    function qwebrSetInteractiveButtonState(buttonText, enableCodeButton = true) {
+      document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
+        btn.innerHTML = buttonText;
+        btn.disabled = !enableCodeButton;
+      });
+    }
+
+    // Function to update the status message
+    function qwebrUpdateStatusHeader(message) {
+      startupMessageWebR.innerHTML = `
+        <i class="fa-solid fa-spinner fa-spin qwebr-icon-status-spinner"></i>
+        <span>${message}</span>`;
+    }
+
+    // Function to install a single package
+    async function qwebrInstallRPackage(packageName) {
+      await globalThis.webR.installPackages([packageName]);
+    }
+
+    // Function to load a single package
+    async function qwebrLoadRPackage(packageName) {
+      await globalThis.webR.evalRVoid(`library(${packageName});`);
+    }
+
+    // Generic function to process R packages
+    async function qwebrProcessRPackagesWithStatus(packages, processType, displayStatusMessageUpdate = true) {
+      // Switch between contexts
+      const messagePrefix = processType === 'install' ? 'Installing' : 'Loading';
+
+      // Modify button state
+      qwebrSetInteractiveButtonState(`🟡 ${messagePrefix} package ...`, false);
+
+      // Iterate over packages
+      for (let i = 0; i < packages.length; i++) {
+        const activePackage = packages[i];
+        const formattedMessage = `${messagePrefix} package ${i + 1} out of ${packages.length}: ${activePackage}`;
+        
+        // Display the update
+        if (displayStatusMessageUpdate) {
+          qwebrUpdateStatusHeader(formattedMessage);
+        }
+
+        // Run package installation
+        if (processType === 'install') {
+          await qwebrInstallRPackage(activePackage);
+        } else {
+          await qwebrLoadRPackage(activePackage);
+        }
+      }
+
+      // Clean slate
+      if (processType === 'load') {
+        await globalThis.webR.flush();
+      }
+    }
+
+
+    // Check to see if any packages need to be installed
+    if (setupRPackages) {
+      // Obtain only a unique list of packages
+      const uniqueRPackageList = Array.from(new Set(installRPackagesList));
+
+      // Install R packages one at a time (either silently or with a status update)
+      await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'install', showStartupMessage);
+
+      if(autoloadRPackages) {
+        // Load R packages one at a time (either silently or with a status update)
+        await qwebrProcessRPackagesWithStatus(uniqueRPackageList, 'load', showStartupMessage);
+      }
+    }
+
+    // Stop timer
+    const initializeWebRTimerEnd = performance.now();
+
+    // Release document status as ready
+    if (showStartupMessage) {
+      startupMessageWebR.innerText = "🟢 Ready!"
+    }
+    
+    qwebrSetInteractiveButtonState(
+      `<i class="fa-solid fa-play qwebr-icon-run-code"></i> <span>Run Code</span>`, 
+      true
+    );
+
+  </script>
 </head>
 <body class="quarto-dark">
 <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.43.0/min/vs/loader.js"></script>
@@ -455,9 +744,13 @@
 <h2>What is Pandoc? <iconify-icon inline="" icon="fluent-emoji:thinking-face"></iconify-icon></h2>
 <div class="quarto-layout-panel" data-layout="[0.30, 0.70]">
 <div class="quarto-layout-row quarto-layout-valign-center">
-<div class="cell quarto-layout-cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-2_21998e0a3f8ce2be8c7b4ed8e3dcac42" style="flex-basis: 30.0%;justify-content: center;">
+<div class="cell quarto-layout-cell" style="flex-basis: 30.0%;justify-content: center;">
 <div class="cell-output-display">
+<div>
+<figure>
 <p><img data-src="gentle-intro-to-quarto_files/figure-revealjs/unnamed-chunk-2-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 <div id="pandoc-description" class="quarto-layout-cell" style="flex-basis: 70.0%;justify-content: center;">
@@ -535,9 +828,7 @@ flowchart LR
 </section>
 <section id="downloading-and-installing-quarto" class="slide level2">
 <h2>Downloading and installing Quarto</h2>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-5_973171b64b6c8c1f89b9e14eb1f01083">
-<p><a href="https://quarto.org/docs/download/"><img data-src="assets/images/quarto-download.png" class="quarto-figure-center" style="width:100.0%" alt="Screenshot of https://quarto.org/docs/download/ webpage"></a></p>
-</div>
+<p><a href="https://quarto.org/docs/download/"><img data-src="assets/images/quarto-download.png" class="quarto-figure quarto-figure-center" style="width:100.0%" alt="Screenshot of https://quarto.org/docs/download/ webpage"></a></p>
 <div class="attribution">
 <p><a href="https://quarto.org/" class="uri">https://quarto.org/</a></p>
 </div>
@@ -556,10 +847,8 @@ flowchart LR
 </div>
 <div class="sourceCode" id="cb1" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">brew</span> install quarto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-6_1adee96c45bfc88367c2550e667efe88">
 <div style="text-align:center;">
 <p><a href="https://formulae.brew.sh/cask/quarto"><img data-src="assets/images/quarto-homebrew.png" alt="Screenshot of https://brew.sh/ webpage"></a></p>
-</div>
 </div>
 </div><div class="column">
 <ul>
@@ -571,19 +860,17 @@ flowchart LR
 </div>
 <div class="sourceCode" id="cb2" data-filename="PowerShell"><pre class="sourceCode PowerShell code-with-copy"><code class="sourceCode powershell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>choco install quarto</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-7_48d4e4f955d9d0df7ed4e1fc9fe0fa6a">
 <div style="text-align:center;">
-<p><a href="https://community.chocolatey.org/packages/quarto"><img data-src="assets/images/quarto-chocolatey.png" class="quarto-figure-center" alt="Screenshot of https://community.chocolatey.org/ webpage"></a></p>
-</div>
+<p><a href="https://community.chocolatey.org/packages/quarto"><img data-src="assets/images/quarto-chocolatey.png" class="quarto-figure quarto-figure-center" alt="Screenshot of https://community.chocolatey.org/ webpage"></a></p>
 </div>
 </div>
 </div>
 </section>
 <section id="writing-with-your-favourite-editor" class="slide level2 smaller">
 <h2>Writing with your favourite editor</h2>
-<div class="cell panel-tabset" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-8_b3cdd7330aca5636675bec541bd67914">
+<div class="cell panel-tabset">
 <ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">VSCODE</a></li><li><a href="#tabset-1-2">JUPYTER</a></li><li><a href="#tabset-1-3">RSTUDIO</a></li><li><a href="#tabset-1-4">NEOVIM</a></li><li><a href="#tabset-1-5">TEXT-EDITOR</a></li></ul>
-<div class="cell tab-content" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-8_b3cdd7330aca5636675bec541bd67914">
+<div class="cell tab-content">
 <div id="tabset-1-1">
 <p><a href="https://quarto.org/docs/get-started/hello/vscode.html"><img data-src="assets/images/quarto-get-started-vscode.png" alt="Screenshot of https://quarto.org/docs/get-started/hello/vscode.html webpage"></a></p>
 </div>
@@ -607,10 +894,10 @@ flowchart LR
 </section>
 <section id="quarto-a-command-line-interface" class="slide level2">
 <h2>Quarto: a command line interface</h2>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-9_be390d47717c5e03f14da6ab2f879bbb">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell fragment" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-9_be390d47717c5e03f14da6ab2f879bbb">
+<div class="cell fragment">
 <div class="cell-output cell-output-stdout">
 <pre style="font-size: 28%;"><code>
   Usage:   quarto
@@ -726,7 +1013,7 @@ flowchart LR
 </div>
 <div class="sourceCode" id="cb8" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project default Default</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-10_b87c5797be78aac34ff294d32bde4e11">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre style="font-size: 50%;"><code>demo/Default
 ├── Default.qmd
@@ -737,9 +1024,11 @@ flowchart LR
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-11_48c01855cbcacced41ed57670eed7487">
 <div style="text-align:center;">
-<p><img data-src="assets/images/quarto-project-default.png" class="quarto-figure-center"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/images/quarto-project-default.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -764,7 +1053,7 @@ flowchart LR
 <ul>
 <li><code>_quarto.yml</code>: project configuration file.</li>
 </ul>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-12_6442446faae8629ef462bf84cf8e1bad">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -778,7 +1067,7 @@ flowchart LR
 <ul>
 <li><code>Default.qmd</code>: default Quarto document.</li>
 </ul>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-13_59e4c02d38f4a07b8197645c4a36c6eb">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
@@ -819,7 +1108,7 @@ flowchart LR
 </div>
 <div class="sourceCode" id="cb12" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project website Website</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-14_e067458968929760f8cc7a65c2daa8ea">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre style="font-size: 50%;"><code>demo/Website
 ├── _quarto.yml
@@ -832,9 +1121,11 @@ flowchart LR
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-15_bfd8fc743ec4752babb502ce7b5cb9b6">
 <div style="text-align:center;">
-<p><img data-src="assets/images/quarto-project-website.png" class="quarto-figure-center"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/images/quarto-project-website.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -865,7 +1156,7 @@ flowchart LR
 </div>
 <div class="sourceCode" id="cb14" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project blog Blog</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-16_559949013bb8b113f1ed33b0d2beb9a1">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre style="font-size: 50%;"><code>demo/Blog
 ├── _quarto.yml
@@ -887,9 +1178,11 @@ flowchart LR
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-17_f3cdbfe93c96306918f1f02bf0da620b">
 <div style="text-align:center;">
-<p><img data-src="assets/images/quarto-project-blog.png" class="quarto-figure-center"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/images/quarto-project-blog.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -920,7 +1213,7 @@ flowchart LR
 </div>
 <div class="sourceCode" id="cb16" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project book Book</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-18_2118d40ff596153110d8733b49a10c33">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre style="font-size: 50%;"><code>demo/Book
 ├── _quarto.yml
@@ -936,9 +1229,11 @@ flowchart LR
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-19_a9222731f31802214c37e841d697d5a7">
 <div style="text-align:center;">
-<p><img data-src="assets/images/quarto-project-book.png" class="quarto-figure-center"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/images/quarto-project-book.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -969,7 +1264,7 @@ flowchart LR
 </div>
 <div class="sourceCode" id="cb18" data-filename="Bash"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> create project manuscript Manuscript</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-20_ad8df7db25f9c96c5c88ceb1a1e71bfc">
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre style="font-size: 50%;"><code>demo/Manuscript
 ├── _quarto.yml
@@ -981,9 +1276,11 @@ flowchart LR
 </div>
 </div>
 <div class="fragment quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="cell" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-21_547c7e8f86e5f779a3cc78473355ddc5">
 <div style="text-align:center;">
-<p><img data-src="assets/images/quarto-project-manuscript.png" class="quarto-figure-center"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assets/images/quarto-project-manuscript.png" class="quarto-figure quarto-figure-center"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -1010,9 +1307,9 @@ flowchart LR
 </section>
 <section id="writing-using-the-visual-editor" class="slide level2 smaller">
 <h2>Writing using the Visual Editor</h2>
-<div class="cell panel-tabset" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-22_8a4d3350ad9672e7648f6d7bf66bfea3">
+<div class="cell panel-tabset">
 <ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">VSCODE</a></li><li><a href="#tabset-2-2">RSTUDIO</a></li></ul>
-<div class="cell tab-content" data-hash="gentle-intro-to-quarto_cache/revealjs/unnamed-chunk-22_8a4d3350ad9672e7648f6d7bf66bfea3">
+<div class="cell tab-content">
 <div id="tabset-2-1">
 <p><a href="https://quarto.org/docs/visual-editor/vscode/"><img data-src="assets/images/quarto-visual-editor-vscode.png" alt="Screenshot of https://quarto.org/docs/visual-editor/vscode/ webpage"></a></p>
 </div>
@@ -1444,17 +1741,24 @@ Cross-reference example&nbsp;1: The above is a custom cross-reference content.
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">🟡 Loading
-  webR...</button>
-<div id="webr-editor-1"></div>
-<div id="webr-code-output-1" aria-live="assertive">
-  <pre style="visibility: hidden"></pre>
+<div id="qwebr-interactive-area-1" class="qwebr-interactive-area">
+  <button class="btn btn-default qwebr-button-run" disabled="" type="button" id="qwebr-button-run-1">🟡 Loading
+    webR...</button>
+  <div id="qwebr-console-area-1" class="qwebr-console-area">
+    <div id="qwebr-editor-1" class="qwebr-editor"></div>
+    <div id="qwebr-output-code-area-1" class="qwebr-output-code-area" aria-live="assertive">
+      <pre style="visibility: hidden"></pre>
+    </div>
+  </div>
+  <div id="qwebr-output-graph-area-1" class="qwebr-output-graph-area">
+  </div>
 </div>
 <script type="module">
   // Retrieve webR code cell information
-  const runButton = document.getElementById("webr-run-button-1");
-  const outputDiv = document.getElementById("webr-code-output-1");
-  const editorDiv = document.getElementById("webr-editor-1");
+  const runButton = document.getElementById("qwebr-button-run-1");
+  const outputCodeDiv = document.getElementById("qwebr-output-code-area-1");
+  const editorDiv = document.getElementById("qwebr-editor-1");
+  const outputGraphDiv = document.getElementById("qwebr-output-graph-area-1");
 
   // Add a light grey outline around the code editor
   editorDiv.style.border = "1px solid #eee";
@@ -1472,7 +1776,7 @@ summary(fit)`,
       minimap: {
         enabled: false
       },
-      fontSize: '17.5rem',               // Bootstrap is 1 rem
+      fontSize: '17.5pt',               // Bootstrap is 1 rem
       renderLineHighlight: "none",     // Disable current line highlighting
       hideCursorInOverviewRuler: true  // Remove cursor indictor in right hand side scroll bar
     });
@@ -1564,7 +1868,7 @@ summary(fit)`,
   async function executeCode(codeToRun) {
 
     // Disallowing execution of other code cells
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = true;
     });
 
@@ -1574,8 +1878,40 @@ summary(fit)`,
     // Create a canvas variable for graphics
     let canvas = undefined;
 
+    // Create a pager variable for help/file contents
+    let pager = [];
+
+    // Process 
+    async function parseTypePager(msg) { 
+
+        // Split out the event data
+        const { path, title, deleteFile } = msg.data; 
+
+        // Process the pager data by reading the information from disk
+        const paged_data = await webR.FS.readFile(path).then((data) => {
+          // Obtain the file content
+          let content = new TextDecoder().decode(data);
+
+          // Remove excessive backspace characters until none remain
+          while(content.match(/.[\b]/)){
+            content = content.replace(/.[\b]/g, '');
+          }
+
+          // Returned cleaned data
+          return content;
+        });
+
+        // Unlink file if needed
+        if (deleteFile) { 
+          await webR.FS.unlink(path); 
+        } 
+
+        // Return extracted data with spaces
+        return paged_data;
+    } 
+
     // Initialize webR
-    await globalThis.webR.init();
+    await webR.init();
 
     // Setup a webR canvas by making a namespace call into the {webr} package
     await webR.evalRVoid("webr::canvas(width=504, height=360)");
@@ -1595,15 +1931,20 @@ summary(fit)`,
       await webR.evalRVoid("dev.off()");
 
       // Merge output streams of STDOUT and STDErr (messages and errors are combined.)
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
+      const out = result.output
+        .filter(evt => evt.type === "stdout" || evt.type === "stderr")
+        .map((evt, index) => {
+          const className = `qwebr-output-code-${evt.type}`;
+          return `<code id="${className}-editor-1-result-${index + 1}" class="${className}">${evt.data}</code>`;
+        })
+        .join("\n");
+
 
       // Clean the state
       const msgs = await webR.flush();
 
-      // Output each image stored
-      msgs.forEach(msg => {
+      // Output each image event stored
+      msgs.forEach((msg) => {
         // Determine if old canvas can be used or a new canvas is required.
         if (msg.type === 'canvas'){
           // Add image to the current canvas
@@ -1618,30 +1959,50 @@ summary(fit)`,
             canvas.style.display = "block";
             canvas.style.margin = "auto";
           }
-        }
+        } 
       });
 
-      // Nullify the outputDiv of content
-      outputDiv.innerHTML = "";
+      // Use `map` to process the filtered "pager" events asynchronously
+      const pager = await Promise.all(
+        msgs.filter(msg => msg.type === 'pager').map(
+          async (msg) => {
+            return await parseTypePager(msg);
+          }
+        )
+      );
+
+      // Nullify the output area of content
+      outputCodeDiv.innerHTML = "";
+      outputGraphDiv.innerHTML = "";
 
       // Design an output object for messages
       const pre = document.createElement("pre");
       if (/\S/.test(out)) {
-        // Display results as text
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
+        // Display results as HTML elements to retain output styling
+        const div = document.createElement("div");
+        div.innerHTML = out;
+        pre.appendChild(div);
       } else {
         // If nothing is present, hide the element.
         pre.style.visibility = "hidden";
       }
-      outputDiv.appendChild(pre);
+      outputCodeDiv.appendChild(pre);
 
       // Place the graphics on the canvas
       if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
+        outputGraphDiv.appendChild(canvas);
+      }
+
+      // Display the pager data
+      if (pager) {
+        // Use the `pre` element to preserve whitespace.
+        pager.forEach((paged_data, index) => {
+          let pre_pager = document.createElement("pre");
+          pre_pager.innerText = paged_data;
+          pre_pager.classList.add("qwebr-output-code-pager");
+          pre_pager.setAttribute("id", "qwebr-output-code-pager-editor-1-result-" + (index + 1));
+          outputCodeDiv.appendChild(pre_pager);
+        });
       }
     } finally {
       // Clean up the remaining code
@@ -1649,7 +2010,7 @@ summary(fit)`,
     }
 
     // Switch to allowing execution of code
-    document.querySelectorAll(".btn-webr").forEach((btn) => {
+    document.querySelectorAll(".qwebr-button-run").forEach((btn) => {
       btn.disabled = false;
     });
 
@@ -1691,7 +2052,7 @@ summary(fit)`,
 </section></section>
 <section id="quarto-resources" class="title-slide slide level1 center" data-background-image="assets/images/saga.png" data-background-opacity="0.35">
 <h1>Quarto resources</h1>
-<div class="quarto-layout-panel" style="text-align: center;" data-layout-align="center" data-layout-ncol="2">
+<div class="quarto-layout-panel" data-layout-ncol="2" data-layout-align="center" style="text-align: center;">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
 <p><img data-src="assets/images/quarto-logo-trademark.svg" width="400"></p>
@@ -2326,7 +2687,7 @@ summary(fit)`,
     });
     </script>
     -->
-    
+    <script>videojs(video_shortcode_videojs_video1);</script>
     
 
 </body></html>
