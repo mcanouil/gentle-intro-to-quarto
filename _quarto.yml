@@ -59,14 +59,14 @@ include-after-body:
       });
       </script>
       <script type="text/javascript">
-        const dateElements = document.querySelectorAll("p.date, div.listing-date");
-        dateElements.forEach((el) => {
-          el.innerHTML = el.innerHTML.replace(
-            /(\d+)(rd|st|th)/g,
-            "$1<sup style='font-size:0.5em;font-style:italic;'>$2</sup>"
-          );
-        });
-        </script>
+      const dateElements = document.querySelectorAll("p.date, div.listing-date");
+      dateElements.forEach((el) => {
+        el.innerHTML = el.innerHTML.replace(
+          /(\d+)(rd|st|th)/g,
+          "$1<sup style='font-size:0.5em;font-style:italic;'>$2</sup>"
+        );
+      });
+      </script>
       <!--
       <script type="text/javascript">
       Reveal.addEventListener('ready', (event) => {
